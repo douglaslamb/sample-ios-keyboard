@@ -11,6 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
+    var buttons: [UIButton]!
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -34,6 +35,29 @@ class KeyboardViewController: UIInputViewController {
         
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        // create the button
+        let buttonA = UIView()
+        buttonA.translatesAutoresizingMaskIntoConstraints = false
+        
+        // create button label
+        let buttonALabel = UILabel()
+        buttonALabel.translatesAutoresizingMaskIntoConstraints = false
+        buttonALabel.text = "A"
+        
+        // add button label to button
+        buttonA.addSubview(buttonALabel)
+        
+        // add button to keyboard's view
+        self.view.addSubview(buttonA)
+        
+        // position button label within button
+        buttonALabel.centerXAnchor.constraint(equalTo: buttonA.centerXAnchor).isActive = true
+        buttonALabel.centerYAnchor.constraint(equalTo: buttonA.centerYAnchor).isActive = true
+        
+        // position button with self.view
+        buttonA.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        buttonA.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
     
     override func didReceiveMemoryWarning() {

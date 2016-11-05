@@ -38,6 +38,7 @@ class KeyboardViewController: UIInputViewController {
         
         // create the button
         let buttonA = UIView()
+        buttonA.backgroundColor = UIColor.init(white: 1, alpha: 1)
         buttonA.translatesAutoresizingMaskIntoConstraints = false
         
         // create button label
@@ -51,13 +52,17 @@ class KeyboardViewController: UIInputViewController {
         // add button to keyboard's view
         self.view.addSubview(buttonA)
         
-        // position button label within button
+        // center button label within button
         buttonALabel.centerXAnchor.constraint(equalTo: buttonA.centerXAnchor).isActive = true
         buttonALabel.centerYAnchor.constraint(equalTo: buttonA.centerYAnchor).isActive = true
         
-        // position button with self.view
+        // center button with self.view
         buttonA.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         buttonA.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
+        // set button's width and height
+        buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     override func didReceiveMemoryWarning() {

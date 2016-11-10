@@ -65,6 +65,26 @@ class KeyboardViewController: UIInputViewController {
         buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // get the user's touch
+        let touch = touches.first
+        
+        // get the coordinates of the touch
+        let touchPoint = touch?.location(in: view)
+        
+        // get the view (key) the touch is in
+        let touchView = view.hitTest(touchPoint!, with: nil)
+        
+        // get the key's label
+        let touchViewLabel = touchView?.subviews[0]
+        
+        // downcast the label from UIView to UILabel so we can access the "text" property
+        let touchViewLabelRaw = touchViewLabel as! UILabel
+        
+        // insert the label's text into the text field
+        textDocumentProxy.insertText(touchViewLabelRaw.text!)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated

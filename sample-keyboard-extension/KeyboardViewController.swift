@@ -66,10 +66,13 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // call the superclass' function because you almost always should
+        super.touchesBegan(touches, with: event)
+        
         // get the user's touch
         let touch = touches.first
         
-        // get the coordinates of the touch
+        // get the coordinates (point) of the touch
         let touchPoint = touch?.location(in: view)
         
         // get the view (key) the touch is in

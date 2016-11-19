@@ -63,6 +63,18 @@ class KeyboardViewController: UIInputViewController {
         // set button's width and height
         buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
         buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        /*
+        use an array of buttons that we'll have to write out. just a big array of buttons. and then like um'.
+ 
+        I'll just um. like well first I'll make all the dang buttons. Then I'll position all the dang buttons. Then I'll I mean that should be it.
+         
+         So make all the buttons first
+ */
+        
+        // make a bunch of buttons
+        let alphaChars = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

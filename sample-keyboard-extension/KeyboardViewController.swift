@@ -36,6 +36,7 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
+        /*
         // create the button
         let buttonA = UIView()
         buttonA.backgroundColor = UIColor.init(white: 1, alpha: 1)
@@ -49,7 +50,7 @@ class KeyboardViewController: UIInputViewController {
         // add button label to button
         buttonA.addSubview(buttonALabel)
         
-        // add button to keyboard's view
+        // add button to self.view
         self.view.addSubview(buttonA)
         
         // center button label within button
@@ -63,18 +64,56 @@ class KeyboardViewController: UIInputViewController {
         // set button's width and height
         buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
         buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        */
         
-        /*
-        use an array of buttons that we'll have to write out. just a big array of buttons. and then like um'.
- 
-        I'll just um. like well first I'll make all the dang buttons. Then I'll position all the dang buttons. Then I'll I mean that should be it.
-         
-         So make all the buttons first
- */
-        
-        // make a bunch of buttons
+        // the alphabet arranged in QWERTY order
         let alphaChars = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
         
+        // make empty button array to append to later
+        var buttons = [UIView]()
+        
+        // fill array with buttons. Preallocating arrays is not a must in Swift as far as I know
+        // so we will append
+        for alphaChar in alphaChars {
+            buttons.append(makeButton(character: alphaChar))
+        }
+        
+        // add buttons to self.view
+        for button in buttons {
+            self.view.addSubview(button)
+        }
+    }
+    
+    func makeButton(character: String) -> UIView {
+        // create the button
+        let buttonA = UIView()
+        buttonA.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        buttonA.translatesAutoresizingMaskIntoConstraints = false
+        
+        // create button label
+        let buttonALabel = UILabel()
+        buttonALabel.translatesAutoresizingMaskIntoConstraints = false
+        buttonALabel.text = character
+        
+        // add button label to button
+        buttonA.addSubview(buttonALabel)
+        
+        // add button to self.view
+        //self.view.addSubview(buttonA)
+        
+        // center button label within button
+        buttonALabel.centerXAnchor.constraint(equalTo: buttonA.centerXAnchor).isActive = true
+        buttonALabel.centerYAnchor.constraint(equalTo: buttonA.centerYAnchor).isActive = true
+        
+        // center button with self.view
+        //buttonA.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        //buttonA.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
+        // set button's width and height
+        buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        return buttonA
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -137,12 +137,24 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         
-        /*
         // BACKSPACE KEY
-        let backspaceKey = makeButton("<-")
+ 
+        // make backspace key
+        let backspaceKey = makeButton(character: "<-")
+        
+        // set tag so we can identify backspace key when processing touches
+        // 10 is arbitrary. However, UIView has a default tag 0 fyi.
+        backspaceKey.tag = 10
+ 
+        // add backpace key to self.view
         self.view.addSubview(backspaceKey)
-        backspaceKey.
-         */
+        
+        // set constraints for lower right hand corner position
+        // align right side of backspace key with right side of self.view
+        backspaceKey.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        
+        // align bottom of backspace key with bottom of self.view
+        backspaceKey.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     func makeButton(character: String) -> UIView {
@@ -189,6 +201,13 @@ class KeyboardViewController: UIInputViewController {
         
         // get the view (key) the touch is in
         let touchView = view.hitTest(touchPoint!, with: nil)
+        
+        // if key is backspace
+        if touchView?.tag == 10 {
+            // backspace one character and early return
+            self.textDocumentProxy.deleteBackward()
+            return
+        }
         
         // get the key's label
         let touchViewLabel = touchView?.subviews[0]

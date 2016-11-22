@@ -66,7 +66,7 @@ class KeyboardViewController: UIInputViewController {
         buttonA.heightAnchor.constraint(equalToConstant: 50).isActive = true
         */
         
-        // MAKE BUTTONS
+        // MAKE LETTER KEYS
         
         // the alphabet arranged in QWERTY order
         let alphaChars = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
@@ -85,7 +85,7 @@ class KeyboardViewController: UIInputViewController {
             self.view.addSubview(button)
         }
         
-        // ADD CONSTRAINTS
+        // ADD LETTER KEYS CONSTRAINTS
         
         // constants describing number of keys in each row
         // bottom row will take up slack/overflow

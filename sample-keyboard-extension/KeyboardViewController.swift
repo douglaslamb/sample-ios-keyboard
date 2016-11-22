@@ -62,9 +62,11 @@ class KeyboardViewController: UIInputViewController {
         buttonA.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
         // set button's width and height
-        buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        buttonA.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        buttonA.heightAnchor.constraint(equalToConstant: 50).isActive = true
         */
+        
+        // MAKE BUTTONS
         
         // the alphabet arranged in QWERTY order
         let alphaChars = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"]
@@ -82,6 +84,65 @@ class KeyboardViewController: UIInputViewController {
         for button in buttons {
             self.view.addSubview(button)
         }
+        
+        // ADD CONSTRAINTS
+        
+        // constants describing number of keys in each row
+        // bottom row will take up slack/overflow
+        let topRowNumButtons = 10
+        let midRowNumButtons = 9
+        
+        // loop over buttons array setting constraints
+        for (i, button) in buttons.enumerated() {
+            // consider each button as a row
+            if i < topRowNumButtons {
+                // top row
+                
+                // align the top of all buttons in row with the top of self.view
+                button.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+                
+                if i == 0 {
+                    // align the leftmost button's left side with the left side of self.view
+                    button.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+                } else {
+                    // else align left side of button with right side of button to the left
+                    button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
+                }
+            } else if i < topRowNumButtons + midRowNumButtons {
+                // mid row
+                
+                // align top of all buttons in row with bottom of top row's first button
+                button.topAnchor.constraint(equalTo: buttons[0].bottomAnchor).isActive = true
+                
+                if i == topRowNumButtons {
+                    // align the leftmost button's left side with the left side of self.view
+                    button.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+                } else {
+                    // else align left side of button with right side of button to the left
+                    button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
+                }
+            } else {
+                // bottom row
+                
+                // align top of all buttons in row with bottom of mid row's first button
+                button.topAnchor.constraint(equalTo: buttons[topRowNumButtons].bottomAnchor).isActive = true
+                
+                if i == topRowNumButtons + midRowNumButtons {
+                    // align the leftmost button's left side with the left side of self.view
+                    button.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+                } else {
+                    // else align left side of button with right side of button to the left
+                    button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
+                }  
+            }
+        }
+        
+        /*
+        // BACKSPACE KEY
+        let backspaceKey = makeButton("<-")
+        self.view.addSubview(backspaceKey)
+        backspaceKey.
+         */
     }
     
     func makeButton(character: String) -> UIView {
@@ -110,8 +171,8 @@ class KeyboardViewController: UIInputViewController {
         //buttonA.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
         // set button's width and height
-        buttonA.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        buttonA.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        buttonA.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        buttonA.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         return buttonA
     }

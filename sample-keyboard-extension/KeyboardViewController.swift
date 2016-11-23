@@ -93,9 +93,9 @@ class KeyboardViewController: UIInputViewController {
         
         // loop over buttons array setting constraints
         for (i, button) in buttons.enumerated() {
-            // consider each button as a row
+            // consider each row of the keyboard
             if i < topRowNumButtons {
-                // top row
+                // TOP ROW
                 
                 // align the top of all buttons in row with the top of self.view
                 button.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -108,7 +108,7 @@ class KeyboardViewController: UIInputViewController {
                     button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
                 }
             } else if i < topRowNumButtons + midRowNumButtons {
-                // mid row
+                // MID ROW
                 
                 // align top of all buttons in row with bottom of top row's first button
                 button.topAnchor.constraint(equalTo: buttons[0].bottomAnchor).isActive = true
@@ -121,7 +121,7 @@ class KeyboardViewController: UIInputViewController {
                     button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
                 }
             } else {
-                // bottom row
+                // BOTTOM ROW
                 
                 // align top of all buttons in row with bottom of mid row's first button
                 button.topAnchor.constraint(equalTo: buttons[topRowNumButtons].bottomAnchor).isActive = true

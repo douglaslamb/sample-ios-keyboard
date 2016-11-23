@@ -74,8 +74,7 @@ class KeyboardViewController: UIInputViewController {
         // make empty button array to append to later
         var buttons = [UIView]()
         
-        // fill array with buttons. Preallocating arrays is not a must in Swift as far as I know
-        // so we will append
+        // loop over alphaChars appending buttons to "buttons" as we go
         for alphaChar in alphaChars {
             buttons.append(makeButton(character: alphaChar))
         }

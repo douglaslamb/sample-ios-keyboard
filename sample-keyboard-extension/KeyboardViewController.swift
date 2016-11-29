@@ -196,10 +196,10 @@ class KeyboardViewController: UIInputViewController {
         let touch = touches.first
         
         // get the coordinates (point) of the touch
-        let touchPoint = touch?.location(in: view)
+        let touchPoint = touch?.location(in: self.view)
         
         // get the view (key) the touch is in
-        let touchView = view.hitTest(touchPoint!, with: nil)
+        let touchView = self.view.hitTest(touchPoint!, with: nil)
         
         // if key is backspace
         if touchView?.tag == 10 {
